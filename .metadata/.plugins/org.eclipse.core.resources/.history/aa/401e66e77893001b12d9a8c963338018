@@ -1,0 +1,5 @@
+package com.cg.fda.exception;
+
+public class DeliveryBoyException extends RuntimeException {
+
+}

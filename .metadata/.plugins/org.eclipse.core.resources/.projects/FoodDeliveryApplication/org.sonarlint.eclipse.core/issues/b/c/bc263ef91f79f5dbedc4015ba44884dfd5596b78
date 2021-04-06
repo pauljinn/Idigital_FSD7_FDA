@@ -1,0 +1,14 @@
+
+n
+java:S1854"6Remove this useless assignment to local variable "s3".(Ş¤’Şûÿÿÿÿ8ç±ÓˆŠ/HRMAJORZ
+CODE_SMELL
+_
+java:S1481"'Remove this unused "s3" local variable.(Ş¤’Şûÿÿÿÿ8ç±ÓˆŠ/HRMINORZ
+CODE_SMELL
+k	java:S106"9Replace this use of System.out or System.err by a logger.(âÓå¯8è¬ÆˆŠ/H‹RMAJORZ
+CODE_SMELL
+p	java:S106
+"9Replace this use of System.out or System.err by a logger.(ü´èßıÿÿÿÿ8è¬ÆˆŠ/HŠRMAJORZ
+CODE_SMELL
+p	java:S106"9Replace this use of System.out or System.err by a logger.( ùÖşÿÿÿÿ8ùºİˆŠ/H”RMAJORZ
+CODE_SMELL

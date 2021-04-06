@@ -1,0 +1,14 @@
+package com.cg.fda.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class DeliveryBoyServiceTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

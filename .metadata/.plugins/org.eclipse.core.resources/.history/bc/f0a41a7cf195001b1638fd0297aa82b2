@@ -1,0 +1,61 @@
+package com.cg.fda.web;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.validation.BindingResult;
+
+import com.cg.fda.domain.DeliveryBoy;
+import com.cg.fda.service.DeliveryBoyService;
+import com.cg.fda.service.MapValidationErrorService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = DeliveryBoyController.class)
+@AutoConfigureMockMvc
+class DeliveryBoyControllerTest {
+
+	@Autowired
+	MockMvc mockMvc;
+	
+	@MockBean
+	DeliveryBoyService deliveryBoyService;
+	
+	@MockBean
+	MapValidationErrorService mapValidationErrorService;
+	
+	@InjectMocks
+	DeliveryBoyController deliveryBoyController;
+	
+	/**
+	 * Testing the createDeliveryBoy method of teh rest controller by giving the valid data of patient.
+	 * @throws Exception
+	 */
+	@Test
+	void test_CreateNewpatient() throws Exception{
+		BindingResult result = null;
+		BDDMockito.given(mapValidationErrorService.mapValidationError(result)).willReturn(null);
+		DeliveryBoy deliveryBoy = new DeliveryBoy("Db02","Aarush","89123456789","db02@gmail.com");
+		BDDMockito.given(deliveryBoyService.saveOrUpdate(deliveryBoy)).willReturn(deliveryBoy);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String inputJson = objectMapper.writeValueAsString(deliveryBoy);
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/delivery")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(inputJson))
+				.andExpect(status().isCreated())
+				.andExpect(json)
+	}
+
+}
